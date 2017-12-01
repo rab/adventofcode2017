@@ -12,8 +12,9 @@ My solutions for the 2015 installment of the Advent of Code is in the repo: [rab
 My Personal [Leaderboard] stats:
 
 <pre>
-      --Part 1---   --Part 2---
-Day   Rank  Score   Rank  Score
+      --------Part 1--------   -------Part 2--------
+Day       Time   Rank  Score       Time  Rank  Score
+  1   12:20:19  11458      0   12:28:06  9243      0
 </pre>
 
 Here are some of the participants using Ruby from the [Cincinnati Ruby Brigade] or who I noticed on the [Leaderboard]:
