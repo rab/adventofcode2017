@@ -14,6 +14,7 @@ require 'date'
 require 'uri'
 require 'net/http'
 require 'nokogiri'
+require_relative 'input'
 
 day = ARGV[0].to_i.nonzero? || Date.today.day
 year = Date.today.year
@@ -38,4 +39,7 @@ unless File.exist? filename
     f.puts
     f.write File.read('day_template.rb')
   end
+
+  # Might as well get the input, too
+  Input.for_day(day, year)
 end

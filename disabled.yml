@@ -339,6 +339,9 @@ Style/ParallelAssignment:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/ModuleFunction:
+  Enabled: false
+
 Style/MultilineBlockChain:
   Enabled: false
 
