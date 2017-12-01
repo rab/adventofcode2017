@@ -7,6 +7,7 @@
 #
 # Note that some days may not have an input file if the input was specified in the description.
 
+require 'date'
 require 'uri'
 require 'net/http'
 
