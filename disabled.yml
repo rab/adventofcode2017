@@ -351,6 +351,9 @@ Style/MultilineIfModifier:
 Style/NestedTernaryOperator:
   Enabled: false
 
+Style/NumericLiterals:
+  Enabled: false
+
 # Offense count: 99
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.

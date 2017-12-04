@@ -35,8 +35,6 @@ input = 289326 # Input.for_day(day, 2017)
 
 puts "solving day #{day} from input:\n#{input}"
 
-tests = { 1 => 0, 12 => 3, 23 => 2, 1024 => 31 }
-
 def steps_for(location)
   minimum = Math.sqrt(location).ceil.to_i/2
   ring = minimum*2+1
@@ -53,6 +51,7 @@ def edge_centers(ring)
   [ur, ul, ll, lr].map {|_| _-ring/2 }
 end
 
+tests = { 1 => 0, 12 => 3, 23 => 2, 1024 => 31 }
 tests.each do |location,expected|
   print "From #{location}, expected #{expected}"
   if (actual = steps_for(location)) == expected
@@ -106,37 +105,25 @@ end
 # the last zero is filled, expand the grid and recurse.
 def fill_until(grid, target)
   limit = grid.size - 1
-  row, column = limit - 1, limit
   # Four sides to do:
   # a b c
   # d • e
   # f g h
 
   # Right:
-  row.downto(0) do |x|
+  (limit-1).downto(0) do |x|
     grid[x][limit] = [
       grid[x-1][limit-1].to_i, # a
-      grid[x-1][limit  ].to_i, # b
-      # grid[x-1][limit+1].to_i, # c
       grid[x  ][limit-1].to_i, # d
-      # grid[x  ][limit+1].to_i, # e
       grid[x+1][limit-1].to_i, # f
       grid[x+1][limit  ].to_i, # g
-      # grid[x+1][limit+1].to_i, # h
     ].sum
     return grid[x][limit] if grid[x][limit] > target
   end
 
-  # a b c
-  # d • e
-  # f g h
   # Top:
-  (column-1).downto(0) do |y|
+  (limit-1).downto(0) do |y|
     grid[0][y] = [
-      # grid[0-1][y-1].to_i, # a
-      # grid[0-1][y  ].to_i, # b
-      # grid[0-1][y+1].to_i, # c
-      # y.zero? ? 0 : grid[0  ][y-1].to_i, # d
       grid[0  ][y+1].to_i, # e
       y.zero? ? 0 : grid[0+1][y-1].to_i, # f
       grid[0+1][y  ].to_i, # g
@@ -145,44 +132,30 @@ def fill_until(grid, target)
     return grid[0][y] if grid[0][y] > target
   end
 
-  # a b c
-  # d • e
-  # f g h
   # Left:
   1.upto(limit) do |x|
     grid[x][0] = [
-      # grid[x-1][0-1].to_i, # a
       grid[x-1][0  ].to_i, # b
       grid[x-1][0+1].to_i, # c
-      # grid[x  ][0-1].to_i, # d
       grid[x  ][0+1].to_i, # e
-      # 0.zero? ? x : grid[x+1][0-1].to_i, # f
-      # grid[x+1][0  ].to_i, # g
       x == limit ? 0 : grid[x+1][0+1].to_i, # h
     ].sum
     return grid[x][0] if grid[x][0] > target
   end
 
-  # a b c
-  # d • e
-  # f g h
   # Bottom:
-   1.upto(limit) do |y|
+  1.upto(limit) do |y|
     grid[limit][y] = [
       y.zero? ? 0 : grid[limit-1][y-1].to_i, # a
       grid[limit-1][y  ].to_i, # b
       grid[limit-1][y+1].to_i, # c
       y.zero? ? 0 : grid[limit  ][y-1].to_i, # d
-      # grid[limit  ][y+1].to_i, # e
-      # grid[limit+1][y-1].to_i, # f
-      # grid[limit+1][y  ].to_i, # g
-      # grid[limit+1][y+1].to_i, # h
     ].sum
     return grid[limit][y] if grid[limit][y] > target
   end
 
   expand! grid
-  return fill_until(grid, target)
+  fill_until(grid, target)
 end
 
 require 'pp'
