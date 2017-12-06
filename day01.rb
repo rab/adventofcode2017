@@ -53,29 +53,29 @@ require_relative 'input'
 day = __FILE__[/\d+/].to_i(10)
 input = Input.for_day(day)
 
-puts "solving day #{day} from input:\n#{input}"
-tests = {
-  "1122" => 3,
-  "1111" => 4,
-  "1234" => 0,
-  "91212129" => 9,
-}
-
 def captcha(string)
   digits = string.strip.each_char.map(&:to_i)
   digits << digits[0]
   digits.each_cons(2).reduce(0) {|sum,(a,b)| b == a ? sum+b : sum }
 end
 
-tests.each do |from,expected|
-  actual = captcha(from)
-  print "#{from.inspect} expected #{expected}"
-  if actual == expected
-    puts " √"
-  else
-    puts ", but got #{actual}"
-  end
-end
+# puts "solving day #{day} from input:\n#{input}"
+# tests = {
+#   "1122" => 3,
+#   "1111" => 4,
+#   "1234" => 0,
+#   "91212129" => 9,
+# }
+
+# tests.each do |from,expected|
+#   actual = captcha(from)
+#   print "#{from.inspect} expected #{expected}"
+#   if actual == expected
+#     puts " √"
+#   else
+#     puts ", but got #{actual}"
+#   end
+# end
 
 puts "Part 1:", captcha(input)
 
@@ -103,27 +103,27 @@ puts "Part 1:", captcha(input)
 #
 # What is the solution to your new captcha?
 
-tests = {
-  "1212" =>  6,
-  "1221" => 0,
-  "123425" => 4,
-  "123123" => 12,
-  "12131415" => 4,
-}
-
 def captcha2(string)
   digits = string.strip.each_char.map(&:to_i)
   digits.zip(digits.rotate(digits.length/2)).reduce(0) {|sum,(a,b)| b == a ? sum+b : sum }
 end
 
-tests.each do |from,expected|
-  actual = captcha2(from)
-  print "#{from.inspect} expected #{expected}"
-  if actual == expected
-    puts " √"
-  else
-    puts ", but got #{actual}"
-  end
-end
+# tests = {
+#   "1212" =>  6,
+#   "1221" => 0,
+#   "123425" => 4,
+#   "123123" => 12,
+#   "12131415" => 4,
+# }
+
+# tests.each do |from,expected|
+#   actual = captcha2(from)
+#   print "#{from.inspect} expected #{expected}"
+#   if actual == expected
+#     puts " √"
+#   else
+#     puts ", but got #{actual}"
+#   end
+# end
 
 puts "Part 2:", captcha2(input)

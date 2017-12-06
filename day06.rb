@@ -45,7 +45,7 @@ require_relative 'input'
 day = __FILE__[/\d+/].to_i(10)
 input = Input.for_day(day, 2017).scan(/\d+/).map(&:to_i)
 
-puts "solving day #{day} from input:\n#{input}"
+# puts "solving day #{day} from input:\n#{input}"
 
 def redistribute(banks)
   n = banks.size

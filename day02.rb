@@ -35,7 +35,7 @@ input = Input.for_day(day, 2017)
 # 2 4 6 8
 # SS
 
-puts "solving day #{day} from input:\n#{input}"
+# puts "solving day #{day} from input:\n#{input}"
 
 puts "Part1:", input.each_line.map{|row|row.split(' ').map(&:to_i).minmax.reverse.reduce(:-)}.sum
 

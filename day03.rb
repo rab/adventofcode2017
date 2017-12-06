@@ -33,7 +33,7 @@ require_relative 'input'
 day = __FILE__[/\d+/].to_i(10)
 input = 289326 # Input.for_day(day, 2017)
 
-puts "solving day #{day} from input:\n#{input}"
+# puts "solving day #{day} from input:\n#{input}"
 
 def steps_for(location)
   minimum = Math.sqrt(location).ceil.to_i/2
@@ -51,15 +51,15 @@ def edge_centers(ring)
   [ur, ul, ll, lr].map {|_| _-ring/2 }
 end
 
-tests = { 1 => 0, 12 => 3, 23 => 2, 1024 => 31 }
-tests.each do |location,expected|
-  print "From #{location}, expected #{expected}"
-  if (actual = steps_for(location)) == expected
-    puts " √"
-  else
-    puts ", but got #{actual}"
-  end
-end
+# tests = { 1 => 0, 12 => 3, 23 => 2, 1024 => 31 }
+# tests.each do |location,expected|
+#   print "From #{location}, expected #{expected}"
+#   if (actual = steps_for(location)) == expected
+#     puts " √"
+#   else
+#     puts ", but got #{actual}"
+#   end
+# end
 
 puts "Part1: ", steps_for(input)
 
